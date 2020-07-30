@@ -13,8 +13,6 @@ Features:
 Run the Application spring boot file to start the server.
 
 Hit Rest Api URL
-http://localhost:8080/connected?origin=Boston&destination=New York 
+http://localhost:8080/connected?origin=Boston&destination=Newark 
 
 Result will be returned as "YES" or "NO"
-
-
