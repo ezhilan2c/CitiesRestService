@@ -39,25 +39,25 @@ public class CityServiceImplTest {
 	@Test
 	public void testFindCitiesConnected() {
 		when(commuter.getCityMap()).thenReturn(getCityMap());
-		assertEquals(subject.findCitiesConnected("Boston", "New York"), "YES");
-		assertEquals(subject.findCitiesConnected("California", "New York"), "NO");
-		assertEquals(subject.findCitiesConnected("Boston", "New York"), "YES");
-		assertNotEquals(subject.findCitiesConnected("Boston", "Texas"), "YES");
-		assertNotEquals(subject.findCitiesConnected("Newark", "Vermont"), "YES");
+		assertEquals(subject.findCitiesConnected("BOSTON", "NEW YORK"), "YES");
+		assertEquals(subject.findCitiesConnected("CALIFORNIA", "NEW YORK"), "NO");
+		assertEquals(subject.findCitiesConnected("BOSTON", "NEW YORK"), "YES");
+		assertNotEquals(subject.findCitiesConnected("BOSTON", "TEXAS"), "YES");
+		assertNotEquals(subject.findCitiesConnected("NEWARK", "VERMONT"), "YES");
 	}
 	
 	private Map<String, List<String>> getCityMap(){
 		cityMap=new HashMap<>();
 		List<String> list = new ArrayList<String>();
-		list.add("New York");
-		list.add("Newark");
-		cityMap.put("Boston", list);
+		list.add("NEW YORK");
+		list.add("NEWARK");
+		cityMap.put("BOSTON", list);
 		list = new ArrayList<String>();
-		list.add("Boston");
-		cityMap.put("Newark", list);
+		list.add("BOSTON");
+		cityMap.put("NEWARK", list);
 		list = new ArrayList<String>();
-		list.add("Boston");
-		cityMap.put("New York", list);
+		list.add("BOSTON");
+		cityMap.put("NEW YORK", list);
 	  return cityMap;
 	}
 }

@@ -35,8 +35,8 @@ public class Commuter {
 		try (Stream<String> stream = Files.lines(Paths.get(cityFilePath))) {
             stream.forEach(cities -> {
             String[] city = cities.split(",");
-            String origin = city[0].trim();
-            String destination = city[1].trim();
+            String origin = city[0].toUpperCase().trim();
+            String destination = city[1].toUpperCase().trim();
             
 	            if(cityMap.get(origin) == null) {
 	                List<String> oiginList = new ArrayList<>();

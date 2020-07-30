@@ -27,16 +27,18 @@ public class CityServiceImpl implements CityService{
 	public String findCitiesConnected(String origin, String destination) {
 		List<String> sourceList = new ArrayList<String>();
 		List<String> destinationList = new ArrayList<String>();
+		origin = origin.toUpperCase().trim();
+		destination = destination.toUpperCase().trim();
 		
-		if(commuter.getCityMap().get(origin.trim())!=null) {
-			sourceList = new ArrayList<String>(commuter.getCityMap().get(origin.trim()));
+		if(commuter.getCityMap().get(origin)!=null) {
+			sourceList = new ArrayList<String>(commuter.getCityMap().get(origin));
 		}
 		
-		if(commuter.getCityMap().get(destination.trim())!=null) {
-			destinationList = new ArrayList<String>(commuter.getCityMap().get(destination.trim()));
+		if(commuter.getCityMap().get(destination)!=null) {
+			destinationList = new ArrayList<String>(commuter.getCityMap().get(destination));
 		}
 		
-		if(sourceList.contains(destination.trim()) || sourceList.retainAll(destinationList) && sourceList.size()>0) {
+		if(sourceList.contains(destination) || sourceList.retainAll(destinationList) && sourceList.size()>0) {
     		return YES;
     	}
         
