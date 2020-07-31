@@ -34,29 +34,33 @@ public class Commuter {
 	private void loadAllCityData() {
 		try (Stream<String> stream = Files.lines(Paths.get(cityFilePath))) {
             stream.forEach(cities -> {
-            String[] city = cities.split(",");
-            String origin = city[0].toUpperCase().trim();
-            String destination = city[1].toUpperCase().trim();
+	            String[] city = cities.split(",");
+	            String origin = city[0].toUpperCase().trim();
+	            String destination = city[1].toUpperCase().trim();
             
-	            if(cityMap.get(origin) == null) {
-	                List<String> oiginList = new ArrayList<>();
-	                oiginList.add(destination);
-	                cityMap.put(origin, oiginList);
-	
-	            } else {
-	                cityMap.get(origin).add(destination);
-	            }
-                if (cityMap.get(destination) == null){
-                    List<String> destinationList = new ArrayList<>();
-                    destinationList.add(origin);
-                    cityMap.put(destination, destinationList);
-                }else {
-                    cityMap.get(destination).add(origin);
-                }
+	            constructCity(origin, destination);
+                constructCity(destination, origin);
             });
         } catch (IOException ioException) {
         	LOGGER.log(Level.SEVERE,ioException.getMessage());
         }
+	}
+
+	/**
+	 * Constructs CityMap which holds the connected cites.
+	 * 
+	 * @param origin
+	 * @param destination
+	 */
+	private void constructCity(String origin, String destination) {
+		
+		if(cityMap.get(origin) == null) {
+		    List<String> oiginList = new ArrayList<>();
+		    oiginList.add(destination);
+		    cityMap.put(origin, oiginList);
+		} else {
+		    cityMap.get(origin).add(destination);
+		}
 	}
 	
 	public Map<String, List<String>> getCityMap() {
